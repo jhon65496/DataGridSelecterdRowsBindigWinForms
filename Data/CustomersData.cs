@@ -30,8 +30,8 @@ namespace DataGridSelecterdRowsBindigWinForms
             Customers = new BindingList<Customer>();
 
             Customers.Add(new Customer { CustomerID = 1, CustomerName = "CustomerName-1" });
-            Customers.Add(new Customer { CustomerID = 1, CustomerName = "CustomerName-1" });
-            Customers.Add(new Customer { CustomerID = 1, CustomerName = "CustomerName-1" });
+            Customers.Add(new Customer { CustomerID = 2, CustomerName = "CustomerName-2" });
+            Customers.Add(new Customer { CustomerID = 3, CustomerName = "CustomerName-3" });
         }
 
         

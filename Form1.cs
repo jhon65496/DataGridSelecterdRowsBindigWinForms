@@ -30,22 +30,26 @@ namespace DataGridSelecterdRowsBindigWinForms
         public Form1()
         {
             InitializeComponent();
-
+            
+            // LoadData
             CustomersData customersData = new CustomersData();
             Customers = customersData.Customers;
 
+            // Controls            
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.DataBindings.Add("DataSource", this, nameof(Customers));
+            dataGridView1.SelectionChanged += DataGridView1_SelectionChanged;
 
-            BindingManagerBase myBindingManagerBase;
 
-            //// Adds delegates to the CurrentChanged and PositionChanged events.
-            //myBindingManagerBase.PositionChanged +=
-            //new EventHandler(BindingManagerBase_PositionChanged);
-            //myBindingManagerBase.CurrentChanged +=
-            //new EventHandler(BindingManagerBase_CurrentChanged);
         }
-        
+
+        private void DataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+                        
+            if (dgv.SelectedRows.Count > 0)
+                Debug.WriteLine(dgv.SelectedRows[0].Cells[1].Value.ToString());
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
