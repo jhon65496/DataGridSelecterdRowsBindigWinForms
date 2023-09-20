@@ -15,12 +15,15 @@ namespace DataGridSelecterdRowsBindigWinForms
     public partial class Form1 : Form
     {
 
-        private List<Customer> customers;
+        private List<Customer> _customers;
 
         public List<Customer> CustomersProp
         {
-            get { return customers; }
-            set { customers = value; }
+            get { return _customers; }
+            set 
+            {
+                _customers = value;             
+            }
         }
 
 
@@ -31,10 +34,14 @@ namespace DataGridSelecterdRowsBindigWinForms
             InitializeComponent();
 
             Customers customers = new Customers();
+            CustomersProp = customers;
 
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.DataSource = customers;
-                        
+            // dataGridView1.DataBindings.Add("DataSource", this, "customers");
+             dataGridView1.DataBindings.Add("DataSource", this, "CustomersProp");
+                
+            // nameLabel.DataBindings.Add(new Binding("Text", bindingSource, "Name"));
+            // label1.DataBindings.Add(new Binding("Text", CustomersProp, "Customer.CustomerName"));
 
             BindingManagerBase myBindingManagerBase = this.BindingContext[customers];
 
