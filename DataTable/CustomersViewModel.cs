@@ -7,10 +7,10 @@ using System.Data;
 
 namespace DataGridSelecterdRowsBindigWinForms
 {
-    class Customers2
+    class CustomersViewModel
     {
         private List<Customer> customers;
-
+        //
         public List<Customer> CustomersProp
         {
             get { return customers; }
@@ -18,7 +18,7 @@ namespace DataGridSelecterdRowsBindigWinForms
         }
 
 
-        public Customers2()
+        public CustomersViewModel()
         {
             LoadData();            
         }
