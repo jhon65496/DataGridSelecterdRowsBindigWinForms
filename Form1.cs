@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
@@ -67,10 +68,16 @@ namespace DataGridSelecterdRowsBindigWinForms
             // throw new NotImplementedException();
             // Prints the new Position of the BindingManagerBase.
             Debug.WriteLine("Position Changed: " + ((BindingManagerBase)sender).Position);
+            // var Pos = source[((BindingManagerBase)sender).Position]; // DataRowView
             var Cur = ((BindingManagerBase)sender).Current; // DataRowView
-                                                             // var customer = (Customer)Cur;
-                                                             // var row = (DataRowView)Cur
-            var row = (DataRow)Cur;
+            var Cur2 = ((BindingManagerBase)sender).Current; // DataRowView
+            var Cus = (Customer)Cur2;
+            // var Cur = ((BindingManagerBase)sender).Current; // DataRowView
+
+            // var row = (DataRow)Cur;
+
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
