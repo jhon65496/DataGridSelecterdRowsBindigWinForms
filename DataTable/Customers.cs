@@ -8,19 +8,18 @@ using System.Data;
 namespace DataGridSelecterdRowsBindigWinForms
 {
     class Customers : List<Customer>
-    {        
+    {
         public Customers()
         {
-            FillData();
+            LoadData();
         }
 
-        private void FillData()
+        private void LoadData()
         {
             this.Add(new Customer() { CustomerID = 1, CustomerName = "CustomerName-1" });
             this.Add(new Customer() { CustomerID = 2, CustomerName = "CustomerName-2" });
             this.Add(new Customer() { CustomerID = 3, CustomerName = "CustomerName-3" });
         }
-
 
     }
 }
