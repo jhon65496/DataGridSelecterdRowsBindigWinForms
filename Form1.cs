@@ -19,15 +19,15 @@ namespace DataGridSelecterdRowsBindigWinForms
         public DataGridViewSelectedRowCollection SelectedRows
         {
             get { return selectedRows; }
-            set 
-            { 
+            set
+            {
                 selectedRows = value;
 
-                
-                if (value.Count == 0)                
+
+                if (value.Count == 0)
                     return;
 
-                Debug.WriteLine("SelectedRows : " + value.Count.ToString());                
+                Debug.WriteLine("SelectedRows : " + value.Count.ToString());
                 label1.Text = selectedRows[0].Cells[1].Value.ToString();
             }
         }
@@ -36,18 +36,46 @@ namespace DataGridSelecterdRowsBindigWinForms
         public Form1()
         {
             InitializeComponent();
+
+            CustomersDataTable customersDataTable = new CustomersDataTable();
+
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.DataSource = customersDataTable.table;
+
+            DataSet ds = new DataSet();
+            ds.Tables.Add(customersDataTable.table);
+
+            BindingManagerBase myBindingManagerBase = this.BindingContext[customersDataTable.table];
+
+            // Adds delegates to the CurrentChanged and PositionChanged events.
+            myBindingManagerBase.PositionChanged +=
+            new EventHandler(BindingManagerBase_PositionChanged);
+            myBindingManagerBase.CurrentChanged +=
+            new EventHandler(BindingManagerBase_CurrentChanged);
+
+        }
+
+        private void BindingManagerBase_CurrentChanged(object sender, EventArgs e)
+        {
+            // throw new NotImplementedException();
             
-            
+
+        }
+
+        private void BindingManagerBase_PositionChanged(object sender, EventArgs e)
+        {
+            // throw new NotImplementedException();
+            // Prints the new Position of the BindingManagerBase.
+            Debug.WriteLine("Position Changed: " + ((BindingManagerBase)sender).Position);
+             var Cur = ((BindingManagerBase)sender).Current; // DataRowView
+                                                             // var customer = (Customer)Cur;
+                                                             // var row = (DataRowView)Cur
+            var row = (DataRow)Cur;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            CustomersDataTable customersDataTable = new CustomersDataTable();
-            
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.DataSource = customersDataTable.table;
-            
-            SelectedRows = dataGridView1.SelectedRows;
+
         }
     }
 }
