@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
 
 namespace DataGridSelecterdRowsBindigWinForms
 {
@@ -25,7 +26,7 @@ namespace DataGridSelecterdRowsBindigWinForms
 
         public CustomersData()
         {
-
+            
             Customers = new BindingList<Customer>();
 
             Customers.Add(new Customer { CustomerID = 1, CustomerName = "CustomerName-1" });
