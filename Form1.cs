@@ -15,38 +15,28 @@ namespace DataGridSelecterdRowsBindigWinForms
     public partial class Form1 : Form
     {
 
-        private DataGridViewSelectedRowCollection selectedRows;
+        private List<Customer> customers;
 
-        public DataGridViewSelectedRowCollection SelectedRows
+        public List<Customer> CustomersProp
         {
-            get { return selectedRows; }
-            set
-            {
-                selectedRows = value;
-
-
-                if (value.Count == 0)
-                    return;
-
-                Debug.WriteLine("SelectedRows : " + value.Count.ToString());
-                label1.Text = selectedRows[0].Cells[1].Value.ToString();
-            }
+            get { return customers; }
+            set { customers = value; }
         }
+
+
 
 
         public Form1()
         {
             InitializeComponent();
 
-            CustomersDataTable customersDataTable = new CustomersDataTable();
+            Customers customers = new Customers();
 
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.DataSource = customersDataTable.table;
+            dataGridView1.DataSource = customers;
+                        
 
-            DataSet ds = new DataSet();
-            ds.Tables.Add(customersDataTable.table);
-
-            BindingManagerBase myBindingManagerBase = this.BindingContext[customersDataTable.table];
+            BindingManagerBase myBindingManagerBase = this.BindingContext[customers];
 
             // Adds delegates to the CurrentChanged and PositionChanged events.
             myBindingManagerBase.PositionChanged +=
@@ -59,8 +49,10 @@ namespace DataGridSelecterdRowsBindigWinForms
         private void BindingManagerBase_CurrentChanged(object sender, EventArgs e)
         {
             // throw new NotImplementedException();
-            
 
+            var Cur = ((BindingManagerBase)sender).Current; // DataRowView
+            var Cus = (Customer)Cur; // DataRowView
+            Debug.WriteLine("BindingManagerBase_CurrentChanged: " + ((BindingManagerBase)sender).Current);
         }
 
         private void BindingManagerBase_PositionChanged(object sender, EventArgs e)
