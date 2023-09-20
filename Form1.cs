@@ -67,7 +67,7 @@ namespace DataGridSelecterdRowsBindigWinForms
             // throw new NotImplementedException();
             // Prints the new Position of the BindingManagerBase.
             Debug.WriteLine("Position Changed: " + ((BindingManagerBase)sender).Position);
-             var Cur = ((BindingManagerBase)sender).Current; // DataRowView
+            var Cur = ((BindingManagerBase)sender).Current; // DataRowView
                                                              // var customer = (Customer)Cur;
                                                              // var row = (DataRowView)Cur
             var row = (DataRow)Cur;
