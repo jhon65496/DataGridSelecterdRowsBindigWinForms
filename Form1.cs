@@ -5,49 +5,50 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DataGridSelecterdRowsBindigWinForms
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form, INotifyPropertyChanged
     {
 
-        private DataGridViewSelectedRowCollection selectedRows;
+        private BindingList<Customer> customers; 
 
-        public DataGridViewSelectedRowCollection SelectedRows
+        public BindingList<Customer> Customers
         {
-            get { return selectedRows; }
-            set 
-            { 
-                selectedRows = value;
-
-                
-                if (value.Count == 0)                
-                    return;
-
-                Debug.WriteLine("SelectedRows : " + value.Count.ToString());                
-                label1.Text = selectedRows[0].Cells[1].Value.ToString();
+            get => customers;
+            set
+            {
+                customers = value;
+                OnPropertyChanged();
             }
         }
-
 
         public Form1()
         {
             InitializeComponent();
-            
-            
-        }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            CustomersDataTable customersDataTable = new CustomersDataTable();
-            
+            CustomersData customersData = new CustomersData();
+            Customers = customersData.Customers;
+
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.DataSource = customersDataTable.table;
-            
-            SelectedRows = dataGridView1.SelectedRows;
+            dataGridView1.DataBindings.Add("DataSource", this, nameof(Customers));
+
+            BindingManagerBase myBindingManagerBase;
+
+            //// Adds delegates to the CurrentChanged and PositionChanged events.
+            //myBindingManagerBase.PositionChanged +=
+            //new EventHandler(BindingManagerBase_PositionChanged);
+            //myBindingManagerBase.CurrentChanged +=
+            //new EventHandler(BindingManagerBase_CurrentChanged);
         }
+        
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
