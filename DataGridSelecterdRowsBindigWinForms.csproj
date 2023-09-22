@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTable\Customers.cs" />
-    <Compile Include="DataTable\Customers2.cs" />
+    <Compile Include="DataTable\CustomersViewModel.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
