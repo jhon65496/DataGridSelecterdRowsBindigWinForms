@@ -37,6 +37,7 @@ namespace DataGridSelecterdRowsBindigWinForms
         {
 
         }
+
         public void Delete(Customer customer)
         {
 
