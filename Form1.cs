@@ -36,22 +36,7 @@ namespace DataGridSelecterdRowsBindigWinForms
 
         public Form1()
         {
-            InitializeComponent();
-
-            //CustomersViewModel customersVM = new CustomersViewModel();
-
-            //dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;            
-            //// dataGridView1.DataBindings.Add("DataSource", customers2, "CustomersProp");
-            //dataGridView1.DataSource = customersVM.CustomersProp;            
-            //label1.DataBindings.Add("Text",
-            //                    customersVM.CustomersProp,
-            //                    "CustomerName");
-            //label1.DataBindings.Add("Text",
-            //                    customers2.CustomersProp,
-            //                    "CustomerName",
-            //                    false,
-            //                    DataSourceUpdateMode.OnPropertyChanged);
-
+            InitializeComponent();            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -71,6 +56,47 @@ namespace DataGridSelecterdRowsBindigWinForms
         private void GetCurrentCustomer(object sender, EventArgs e)
         {
             CurrentCustomer = customersCurrencyManager?.Current as Customer;
+        }
+
+
+
+        private void btCreate_Click(object sender, EventArgs e)
+        {
+            Customer cs = new Customer()
+            {
+                CustomerID = 5,
+                CustomerName = "CustomerName-5"
+            };
+
+            customers.Create(cs);
+        }
+
+        private void btRead_Click(object sender, EventArgs e)
+        {
+            // Customers = customers.Read(); 
+
+        }
+
+        private void btUpdate_Click(object sender, EventArgs e)
+        {
+            Customer cs = new Customer()
+            {
+                CustomerID = 5,
+                CustomerName = "CustomerName-5-Modifi"
+            };
+
+            customers.Update(cs);
+        }
+
+        private void btDelete_Click(object sender, EventArgs e)
+        {
+            Customer cs = new Customer()
+            {
+                CustomerID = 5,
+                CustomerName = "CustomerName-5-Modifi"
+            };
+
+            customers.Delete(cs);
         }
     }
 }

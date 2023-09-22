@@ -21,5 +21,28 @@ namespace DataGridSelecterdRowsBindigWinForms
             this.Add(new Customer() { CustomerID = 3, CustomerName = "CustomerName-3" });
         }
 
+
+        public void Create(Customer customer)
+        {
+            
+        }
+        
+        public List<Customer> Read()
+        {
+            return this;
+        }
+
+
+        public void Update(Customer customer)
+        {
+
+        }
+        public void Delete(Customer customer)
+        {
+
+        }
+
+
+
     }
 }
