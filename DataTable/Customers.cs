@@ -7,7 +7,7 @@ using System.Data;
 
 namespace DataGridSelecterdRowsBindigWinForms
 {
-    class Customers : List<Customer>
+    public class Customers : List<Customer>
     {
         public Customers()
         {
